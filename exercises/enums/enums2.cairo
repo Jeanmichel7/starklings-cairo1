@@ -1,14 +1,16 @@
 // enums2.cairo
 // Execute `starklings hint enums2` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 use debug::PrintTrait;
 use array::ArrayTrait;
 use traits::Into;
 
 #[derive(Copy, Drop)]
 enum Message { // TODO: define the different variants used below
+    Quit,
+    Echo: felt252,
+    Move: (u8, u8),
+    ChangeColor: (u8, u8, u8),
 }
 
 
@@ -60,12 +62,14 @@ impl MessagePrintImpl of PrintTrait<Message> {
             Message::Echo(msg) => println!("{}", msg),
             Message::Move((a, b)) => {
                 println!("{}", a);
-                println!("{}",b);
+                println!("{}", b);
             },
-            Message::ChangeColor((red, green, blue)) => {
-                println!("{}",red);
-                println!("{}",green);
-                println!("{}",blue);
+            Message::ChangeColor((
+                red, green, blue
+            )) => {
+                println!("{}", red);
+                println!("{}", green);
+                println!("{}", blue);
             }
         }
         println!("___MESSAGE ENDS___");
